@@ -62,7 +62,7 @@ function vriendverwijderen() {
 }
 
 const allCells = document.querySelectorAll(".cells:not(.row-top)");
-const topCells = document.querySelectorAll(".cells.row-top");
+const topCellse = document.querySelectorAll(".cells.row-top");
 const resetButton = document.querySelector(".reset");
 const statusSpan = document.querySelector(".status");
 let you = document.getElementById("you").value;
@@ -76,7 +76,7 @@ const column0 = [
   allCells[14],
   allCells[7],
   allCells[0],
-  topCells[0],
+  topCellse[0],
 ];
 const column1 = [
   allCells[36],
@@ -85,7 +85,7 @@ const column1 = [
   allCells[15],
   allCells[8],
   allCells[1],
-  topCells[1],
+  topCellse[1],
 ];
 const column2 = [
   allCells[37],
@@ -94,7 +94,7 @@ const column2 = [
   allCells[16],
   allCells[9],
   allCells[2],
-  topCells[2],
+  topCellse[2],
 ];
 const column3 = [
   allCells[38],
@@ -103,7 +103,7 @@ const column3 = [
   allCells[17],
   allCells[10],
   allCells[3],
-  topCells[3],
+  topCellse[3],
 ];
 const column4 = [
   allCells[39],
@@ -112,7 +112,7 @@ const column4 = [
   allCells[18],
   allCells[11],
   allCells[4],
-  topCells[4],
+  topCellse[4],
 ];
 const column5 = [
   allCells[40],
@@ -121,7 +121,7 @@ const column5 = [
   allCells[19],
   allCells[12],
   allCells[5],
-  topCells[5],
+  topCellse[5],
 ];
 const column6 = [
   allCells[41],
@@ -130,18 +130,18 @@ const column6 = [
   allCells[20],
   allCells[13],
   allCells[6],
-  topCells[6],
+  topCellse[6],
 ];
 const columns = [column0, column1, column2, column3, column4, column5, column6];
 
 const topRow = [
-  topCells[0],
-  topCells[1],
-  topCells[2],
-  topCells[3],
-  topCells[4],
-  topCells[5],
-  topCells[6],
+  topCellse[0],
+  topCellse[1],
+  topCellse[2],
+  topCellse[3],
+  topCellse[4],
+  topCellse[5],
+  topCellse[6],
 ];
 const row0 = [
   allCells[0],
@@ -234,7 +234,7 @@ const getFirstOpenCellForColumn = (colIndex) => {
 };
 
 const clearColorFromTop = (colIndex) => {
-  const topCells = topCells[colIndex];
+  const topCells = topCellse[colIndex];
   topCells.classList.remove("yellow");
   topCells.classList.remove("red");
 };
@@ -409,7 +409,7 @@ const handleCellMouseOver = (e) => {
   const [rowIndex, colIndex] = getCellLocation(cell);
   clearColorFromTop(colIndex);
 
-  const topCells = topCells[colIndex];
+  const topCells = topCellse[colIndex];
   topCells.classList.add(yellowIsNext ? "yellow" : "red");
 };
 
@@ -433,25 +433,25 @@ const handleCellClick = (e) => {
   yellowIsNext = !yellowIsNext;
   clearColorFromTop(colIndex);
   if (gameIsLive) {
-    const topCells = topCells[colIndex];
+    const topCells = topCellse[colIndex];
     topCells.classList.add(yellowIsNext ? "yellow" : "red");
   }
 };
 
 for (const row of rows) {
-  for (const cells of row) {
-    cells.addEventListener("mouseover", handleCellMouseOver);
-    cells.addEventListener("mouseout", handleCellMouseOut);
-    cells.addEventListener("click", handleCellClick);
+  for (const cell of row) {
+    cell.addEventListener("mouseover", handleCellMouseOver);
+    cell.addEventListener("mouseout", handleCellMouseOut);
+    cell.addEventListener("click", handleCellClick);
   }
 }
 
 const reseting = () => {
   for (const row of rows) {
-    for (const cells of row) {
-      cells.classList.remove("red");
-      cells.classList.remove("yellow");
-      cells.classList.remove("win");
+    for (const cell of row) {
+      cell.classList.remove("red");
+      cell.classList.remove("yellow");
+      cell.classList.remove("win");
     }
   }
   resetButton.disabled = true;
