@@ -239,7 +239,7 @@ const clearColorFromTop = (colIndex) => {
   topCell.classList.remove("red");
 };
 
-const getColorOfCell = (cell) => {
+const getColorOfCells = (cell) => {
   const classList = getClassListArray(cell);
   if (classList.includes("yellow")) return "yellow";
   if (classList.includes("red")) return "red";
@@ -272,7 +272,7 @@ const checkWinningCells = (cells) => {
   return true;
 };
 const checkStatusOfGame = (cell) => {
-  const color = getColorOfCell(cell);
+  const color = getColorOfCells(cell);
   if (!color) return;
   const [rowIndex, colIndex] = getCellLocation(cell);
   let winningCells = [cell];
@@ -280,7 +280,7 @@ const checkStatusOfGame = (cell) => {
   let colToCheck = colIndex - 1;
   while (colToCheck >= 0) {
     const cellToCheck = rows[rowToCheck][colToCheck];
-    if (getColorOfCell(cellToCheck) === color) {
+    if (getColorOfCells(cellToCheck) === color) {
       winningCells.push(cellToCheck);
       colToCheck--;
     } else {
@@ -291,7 +291,7 @@ const checkStatusOfGame = (cell) => {
   colToCheck = colIndex + 1;
   while (colToCheck <= 6) {
     const cellToCheck = rows[rowToCheck][colToCheck];
-    if (getColorOfCell(cellToCheck) === color) {
+    if (getColorOfCells(cellToCheck) === color) {
       winningCells.push(cellToCheck);
       colToCheck++;
     } else {
@@ -306,7 +306,7 @@ const checkStatusOfGame = (cell) => {
   colToCheck = colIndex;
   while (rowToCheck >= 0) {
     const cellToCheck = rows[rowToCheck][colToCheck];
-    if (getColorOfCell(cellToCheck) === color) {
+    if (getColorOfCells(cellToCheck) === color) {
       winningCells.push(cellToCheck);
       rowToCheck--;
     } else {
@@ -317,7 +317,7 @@ const checkStatusOfGame = (cell) => {
   rowToCheck = rowIndex + 1;
   while (rowToCheck <= 5) {
     const cellToCheck = rows[rowToCheck][colToCheck];
-    if (getColorOfCell(cellToCheck) === color) {
+    if (getColorOfCells(cellToCheck) === color) {
       winningCells.push(cellToCheck);
       rowToCheck++;
     } else {
@@ -331,7 +331,7 @@ const checkStatusOfGame = (cell) => {
   colToCheck = colIndex - 1;
   while (colToCheck >= 0 && rowToCheck <= 5) {
     const cellToCheck = rows[rowToCheck][colToCheck];
-    if (getColorOfCell(cellToCheck) === color) {
+    if (getColorOfCells(cellToCheck) === color) {
       winningCells.push(cellToCheck);
       rowToCheck++;
       colToCheck--;
@@ -343,7 +343,7 @@ const checkStatusOfGame = (cell) => {
   colToCheck = colIndex + 1;
   while (colToCheck <= 6 && rowToCheck >= 0) {
     const cellToCheck = rows[rowToCheck][colToCheck];
-    if (getColorOfCell(cellToCheck) === color) {
+    if (getColorOfCells(cellToCheck) === color) {
       winningCells.push(cellToCheck);
       rowToCheck--;
       colToCheck++;
@@ -358,7 +358,7 @@ const checkStatusOfGame = (cell) => {
   colToCheck = colIndex - 1;
   while (colToCheck >= 0 && rowToCheck >= 0) {
     const cellToCheck = rows[rowToCheck][colToCheck];
-    if (getColorOfCell(cellToCheck) === color) {
+    if (getColorOfCells(cellToCheck) === color) {
       winningCells.push(cellToCheck);
       rowToCheck--;
       colToCheck--;
@@ -370,7 +370,7 @@ const checkStatusOfGame = (cell) => {
   colToCheck = colIndex + 1;
   while (colToCheck <= 6 && rowToCheck <= 5) {
     const cellToCheck = rows[rowToCheck][colToCheck];
-    if (getColorOfCell(cellToCheck) === color) {
+    if (getColorOfCellss(cellToCheck) === color) {
       winningCells.push(cellToCheck);
       rowToCheck++;
       colToCheck++;
@@ -394,7 +394,7 @@ const checkStatusOfGame = (cell) => {
   gameIsLive = false;
   resetButton.disabled = false;
   statusSpan.textContent = "game is a tie";
-    document.querySelector(".score").innerHTML =
+  document.querySelector(".score").innerHTML =
     " score:<br><br>" +
     you +
     " - " +
@@ -448,10 +448,10 @@ for (const row of rows) {
 
 const reseting = () => {
   for (const row of rows) {
-    for (const cell of row) {
-      cell.classList.remove("red");
-      cell.classList.remove("yellow");
-      cell.classList.remove("win");
+    for (const cells of row) {
+      cells.classList.remove("red");
+      cells.classList.remove("yellow");
+      cells.classList.remove("win");
     }
   }
   resetButton.disabled = true;
