@@ -14,20 +14,15 @@
 <body>
     <header></header>
     <main>
-        <form method="post" >
+        <form method="post">
             <input type="text" name="verzoeknaam">
             <input type="submit" value="zoek naam" name="vriendenverzoek">
         </form>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <?php
+            require('database.php');
             $gebruiker = 0;
             $verzoeknaam = '';
-            try {
-                $conn = new mysqli("localhost", "root", "", "pixelplayground");
-            } catch (Exception $e) {
-                $error = $e->getMessage();
-                echo $error;
-            }
             if (isset($_POST["vriendenverzoek"])) {
                 $verzoeknaam = $_POST["verzoeknaam"];
 
@@ -71,13 +66,13 @@
                     echo "";
                 }
             }
-             ?>
+            ?>
             <input type="text" hidden name="gebruikersnaam" id="denaam">
             <br><br>
             <input type="submit" hidden name="verstuurverzoek" value="verstuur verzoek" id="verstuurverzoek">
         </form>
         <?php
-        require('database.php');
+
         if (isset($_POST["verstuurverzoek"])) {
             $gebruikersnaam = $_POST['gebruikersnaam'];
             if ($_POST['gebruikersnaam'] !== '') {
@@ -95,8 +90,7 @@ gebruikersnaam='$gebruikersnaam'";
                 echo $error;
             }
         }
-
-        $conn->close(); ?>
+ ?>
         <section>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <input name="wegvriend" type="hidden" id="vriendenverwijderen"><?php
@@ -122,8 +116,7 @@ gebruikersnaam='$gebruikersnaam'";
                     $error = $e->getMessage();
                     echo $error;
                 }
-                $result->close();
-                $conn->close(); ?>
+                $result->close(); ?>
                 <input hidden name="submitweg" type="submit" value="" id="autoclick">
             </form>
         </section>
@@ -144,7 +137,7 @@ gebruikersnaam='$gebruikersnaam'";
             }
         }
 
-        $conn->close(); ?>
+       ?>
     </main>
     <footer></footer>
 </body>
