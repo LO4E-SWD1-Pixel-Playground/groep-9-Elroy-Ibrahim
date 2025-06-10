@@ -71,18 +71,13 @@
                     echo "";
                 }
             }
-            $conn->close(); ?>
+             ?>
             <input type="text" hidden name="gebruikersnaam" id="denaam">
             <br><br>
             <input type="submit" hidden name="verstuurverzoek" value="verstuur verzoek" id="verstuurverzoek">
         </form>
         <?php
-        try {
-            $conn = new mysqli("localhost", "root", "", "pixelplayground");
-        } catch (Exception $e) {
-            $error = $e->getMessage();
-            echo $error;
-        }
+        require('database.php');
         if (isset($_POST["verstuurverzoek"])) {
             $gebruikersnaam = $_POST['gebruikersnaam'];
             if ($_POST['gebruikersnaam'] !== '') {
@@ -133,12 +128,6 @@ gebruikersnaam='$gebruikersnaam'";
             </form>
         </section>
         <?php
-        try {
-            $conn = new mysqli("localhost", "root", "", "pixelplayground");
-        } catch (Exception $e) {
-            $error = $e->getMessage();
-            echo $error;
-        }
         if (isset($_POST["submitweg"])) {
             $wegvriend = $_POST['wegvriend'];
             if ($_POST['wegvriend'] !== '') {
