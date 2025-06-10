@@ -61,8 +61,8 @@ function vriendverwijderen() {
   }
 }
 
-const allCells = document.querySelectorAll(".cell:not(.row-top)");
-const topCells = document.querySelectorAll(".cell.row-top");
+const allCells = document.querySelectorAll(".cells:not(.row-top)");
+const topCells = document.querySelectorAll(".cells.row-top");
 const resetButton = document.querySelector(".reset");
 const statusSpan = document.querySelector(".status");
 let you = document.getElementById("you").value;
