@@ -10,6 +10,7 @@
 </head>
 <body><a href="vrienden.php">go</a>
 <a href="connectfour.php">connect 4</a>
+<a href="login.php">login</a>
     <?php     
 ?>
 </body>

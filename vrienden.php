@@ -14,7 +14,7 @@
 <body>
     <header></header>
     <main>
-        <form method="post">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <input type="text" name="verzoeknaam">
             <input type="submit" value="zoek naam" name="vriendenverzoek">
         </form>
