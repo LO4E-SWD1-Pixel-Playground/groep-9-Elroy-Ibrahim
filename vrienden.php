@@ -9,6 +9,7 @@
     <meta name="description" content="">
     <title>friends page</title>
     <meta name="Author" content="Elroy">
+    <meta name="description" content="Dit is een vrienden pagina voor pixelplayground">
 </head>
 
 <body>
