@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <script src="script.js" defer></script>
-    <meta name="description" content="">
     <title>friends page</title>
     <meta name="Author" content="Elroy">
     <meta name="description" content="Dit is een vrienden pagina voor pixelplayground">

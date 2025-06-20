@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="nl">
+
+<head>
+    <html lang="nl">
     <?php
     session_start();
 ?>
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
@@ -20,6 +21,7 @@ if ($_SESSION['profiel'] === '' || $_SESSION['profiel'] === false || $_SESSION['
 echo $_SESSION['profiel'];
 ?></header><main><a href="vrienden.php">go</a>
 <a href="connectfour.php">connect 4</a>
+<a href="hangman.php">hangman</a>
 <a href="login.php">login</a>
     </main>
 <footer></footer>

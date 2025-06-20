@@ -75,7 +75,7 @@
         </section>
         <section id="players">
             <h2 class="score">score: </h2>
-            <form id="playerinfo" action="d">
+            <form id="playerinfo" action="">
                 <select id="otherplayer">
                     <option value="Yellow"></option>
                     <?php
