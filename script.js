@@ -436,14 +436,15 @@ const handleCellClick = (e) => {
     topCells.classList.add(yellowIsNext ? "yellow" : "red");
   }
 };
-
-for (const row of rows) {
-  for (const cell of row) {
-    cell.addEventListener("mouseover", handleCellMouseOver);
-    cell.addEventListener("mouseout", handleCellMouseOut);
-    cell.addEventListener("click", handleCellClick);
+const connectfour = () => {
+  for (const row of rows) {
+    for (const cell of row) {
+      cell.addEventListener("mouseover", handleCellMouseOver);
+      cell.addEventListener("mouseout", handleCellMouseOut);
+      cell.addEventListener("click", handleCellClick);
+    }
   }
-}
+};
 
 const reseting = () => {
   for (const row of rows) {
@@ -558,25 +559,25 @@ const blocker = () => {
   });
   newGameContainer.classList.remove("hide");
 };
-const generateWord = (optionsValue) => {
-  let optionnsButtons = dovument.querySelectorAll(".options");
-  optionnsButtons.forEach((button) => {
-    if (button.innerText.toLowerCasw() === optionValue) {
+const generateWord = (optionValue) => {
+  let optionsButtons = document.querySelectorAll(".options");
+  optionsButtons.forEach((button) => {
+    if (button.innerText.toLowerCase() === optionValue) {
       button.classList.add("active");
     }
     button.disabled = true;
   });
   letterContainer.classList.remove("hide");
   userInputSection.innerText = "";
-  let optionArray = options[optionsValue];
-  chosenWord = optionArray[Math.floor(Math.random() * optionArray.length)];
-  chosenWord = chosenWord.toUpperCase();
-  let displayItem = chosenWord.replace(/./g, '<span class="dashes">_</span>');
+  let optionArray = options[optionValue];
+  gekozenwoord = optionArray[Math.floor(Math.random() * optionArray.length)];
+  gekozenwoord = gekozenwoord.toUpperCase();
+  let displayItem = gekozenwoord.replace(/./g, '<span class="dashes">_</span>');
 
   userInputSection.innerHTML = displayItem;
 };
 
-const intializer = () => {
+const initializer = () => {
   goedgeradenaantal = 0;
   aantalkeren = 0;
 
@@ -586,14 +587,14 @@ const intializer = () => {
   newGameContainer.classList.add("hide");
   letterContainer.innerHTML = "";
 
-  for (let i = 65; i < 65; i++) {
+  for (let i = 65; i < 91; i++) {
     let button = document.createElement("button");
     button.classList.add("letters");
 
     button.innerText = String.fromCharCode(i);
 
     button.addEventListener("click", () => {
-      let charArray = chosenWord.split("");
+      let charArray = gekozenwoord.split("");
       let dashes = document.getElementsByClassName("dashes");
       if (charArray.includes(button.innerText)) {
         charArray.forEach((charArray, index) => {
@@ -603,7 +604,7 @@ const intializer = () => {
             goedgeradenaantal += 1;
 
             if (goedgeradenaantal == charArray.length) {
-              resultText.innerHTML = `<h2 class='win-msg'>Je Hebt GeWonnen!!</h2><p>Het woord was <span>${chosenWord}</span></p>`;
+              resultText.innerHTML = `<h2 class='win-msg'>Je Hebt GeWonnen!!</h2><p>Het woord was <span>${gekozenwoord}</span></p>`;
               blocker();
             }
           }
@@ -613,7 +614,7 @@ const intializer = () => {
         drawMan(aantalkeren);
 
         if (aantalkeren == 6) {
-          resultText.innerHTML = `<h2 class='losw-msg'>Je Hebt VerLoren!!</h2><p>Het woord was <span>${chosenWord}</span></p>`;
+          resultText.innerHTML = `<h2 class='losw-msg'>Je Hebt VerLoren!!</h2><p>Het woord was <span>${gekozenwoord}</span></p>`;
           blocker();
         }
       }
@@ -660,7 +661,7 @@ const canvasCreator = () => {
   const rightLeg = () => {
     drawLine(70, 80, 90, 110);
   };
-  const initalDrawing = () => {
+  const initialDrawing = () => {
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
     drawLine(10, 130, 130, 130);
@@ -670,7 +671,7 @@ const canvasCreator = () => {
 
     drawLine(70, 10, 70, 20);
   };
-  return { initalDrawing, head, body, leftArm, rightArm, leftLeg, rightLeg };
+  return { initialDrawing, head, body, leftArm, rightArm, leftLeg, rightLeg };
 };
 const drawMan = (aantalkeren) => {
   let { head, body, leftArm, rightArm, leftLeg, rightLeg } = canvasCreator();
@@ -699,3 +700,4 @@ const drawMan = (aantalkeren) => {
 };
 newGamebutton.addEventListener("click", initializer);
 window.onload = initializer;
+console.log(gekozenwoord);

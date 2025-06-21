@@ -134,10 +134,6 @@
 .reset:disabled {
  background-color: #4370f1;
 }
-.hangman{
-    box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
 .hangmanmain{
   background-color: #8c52ff;
 }

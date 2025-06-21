@@ -11,14 +11,14 @@
     <title>Hangman</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="https://fonts.googleapis/css2?family=Poppins:wght@400;600&display=swap">
 </head>
 
 <body class="hangman">
     <header>
     
             <?php
-            echo $_SESSION['profiel']; ?>
+            echo $_SESSION['profiel'];
+            echo '<input type="hidden" id="you" value="' . $_SESSION['profiel'] . '">'?>
     </header>
     <main class="hangmanmain">
     <section class="containerhangman">

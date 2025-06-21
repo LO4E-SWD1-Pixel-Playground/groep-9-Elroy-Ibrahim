@@ -11,7 +11,7 @@
     <meta name="Author" content="Elroy">
 </head>
 
-<body id="connectbody">
+<body id="connectbody" onload="connectfour()">
     <header></header>
     <main id=connectmain>
         <section id="connectgame">
