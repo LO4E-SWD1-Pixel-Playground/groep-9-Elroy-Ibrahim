@@ -6,28 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <script src="script.js" defer></script>
-    <meta name="description" content="">
     <title>friends page</title>
     <meta name="Author" content="Elroy">
+    <meta name="description" content="Dit is een vrienden pagina voor pixelplayground">
 </head>
 
 <body>
     <header></header>
     <main>
-        <form method="post" >
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <input type="text" name="verzoeknaam">
             <input type="submit" value="zoek naam" name="vriendenverzoek">
         </form>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <?php
+            require('database.php');
             $gebruiker = 0;
             $verzoeknaam = '';
-            try {
-                $conn = new mysqli("localhost", "root", "", "pixelplayground");
-            } catch (Exception $e) {
-                $error = $e->getMessage();
-                echo $error;
-            }
             if (isset($_POST["vriendenverzoek"])) {
                 $verzoeknaam = $_POST["verzoeknaam"];
 
@@ -71,18 +66,13 @@
                     echo "";
                 }
             }
-            $conn->close(); ?>
+            ?>
             <input type="text" hidden name="gebruikersnaam" id="denaam">
             <br><br>
             <input type="submit" hidden name="verstuurverzoek" value="verstuur verzoek" id="verstuurverzoek">
         </form>
         <?php
-        try {
-            $conn = new mysqli("localhost", "root", "", "pixelplayground");
-        } catch (Exception $e) {
-            $error = $e->getMessage();
-            echo $error;
-        }
+
         if (isset($_POST["verstuurverzoek"])) {
             $gebruikersnaam = $_POST['gebruikersnaam'];
             if ($_POST['gebruikersnaam'] !== '') {
@@ -100,8 +90,7 @@ gebruikersnaam='$gebruikersnaam'";
                 echo $error;
             }
         }
-
-        $conn->close(); ?>
+ ?>
         <section>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <input name="wegvriend" type="hidden" id="vriendenverwijderen"><?php
@@ -127,18 +116,11 @@ gebruikersnaam='$gebruikersnaam'";
                     $error = $e->getMessage();
                     echo $error;
                 }
-                $result->close();
-                $conn->close(); ?>
+                $result->close(); ?>
                 <input hidden name="submitweg" type="submit" value="" id="autoclick">
             </form>
         </section>
         <?php
-        try {
-            $conn = new mysqli("localhost", "root", "", "pixelplayground");
-        } catch (Exception $e) {
-            $error = $e->getMessage();
-            echo $error;
-        }
         if (isset($_POST["submitweg"])) {
             $wegvriend = $_POST['wegvriend'];
             if ($_POST['wegvriend'] !== '') {
@@ -155,7 +137,7 @@ gebruikersnaam='$gebruikersnaam'";
             }
         }
 
-        $conn->close(); ?>
+       ?>
     </main>
     <footer></footer>
 </body>

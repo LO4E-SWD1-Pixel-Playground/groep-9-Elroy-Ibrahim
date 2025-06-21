@@ -62,11 +62,10 @@ function vriendverwijderen() {
 }
 
 const allCells = document.querySelectorAll(".cells:not(.row-top)");
-const topCells = document.querySelectorAll(".cells.row-top");
+const topCellse = document.querySelectorAll(".cells.row-top");
 const resetButton = document.querySelector(".reset");
 const statusSpan = document.querySelector(".status");
 let you = document.getElementById("you").value;
-
 let playerone = 0;
 let playertwo = 0;
 const column0 = [
@@ -76,7 +75,7 @@ const column0 = [
   allCells[14],
   allCells[7],
   allCells[0],
-  topCells[0],
+  topCellse[0],
 ];
 const column1 = [
   allCells[36],
@@ -85,7 +84,7 @@ const column1 = [
   allCells[15],
   allCells[8],
   allCells[1],
-  topCells[1],
+  topCellse[1],
 ];
 const column2 = [
   allCells[37],
@@ -94,7 +93,7 @@ const column2 = [
   allCells[16],
   allCells[9],
   allCells[2],
-  topCells[2],
+  topCellse[2],
 ];
 const column3 = [
   allCells[38],
@@ -103,7 +102,7 @@ const column3 = [
   allCells[17],
   allCells[10],
   allCells[3],
-  topCells[3],
+  topCellse[3],
 ];
 const column4 = [
   allCells[39],
@@ -112,7 +111,7 @@ const column4 = [
   allCells[18],
   allCells[11],
   allCells[4],
-  topCells[4],
+  topCellse[4],
 ];
 const column5 = [
   allCells[40],
@@ -121,7 +120,7 @@ const column5 = [
   allCells[19],
   allCells[12],
   allCells[5],
-  topCells[5],
+  topCellse[5],
 ];
 const column6 = [
   allCells[41],
@@ -130,18 +129,18 @@ const column6 = [
   allCells[20],
   allCells[13],
   allCells[6],
-  topCells[6],
+  topCellse[6],
 ];
 const columns = [column0, column1, column2, column3, column4, column5, column6];
 
 const topRow = [
-  topCells[0],
-  topCells[1],
-  topCells[2],
-  topCells[3],
-  topCells[4],
-  topCells[5],
-  topCells[6],
+  topCellse[0],
+  topCellse[1],
+  topCellse[2],
+  topCellse[3],
+  topCellse[4],
+  topCellse[5],
+  topCellse[6],
 ];
 const row0 = [
   allCells[0],
@@ -234,9 +233,9 @@ const getFirstOpenCellForColumn = (colIndex) => {
 };
 
 const clearColorFromTop = (colIndex) => {
-  const topCell = topCells[colIndex];
-  topCell.classList.remove("yellow");
-  topCell.classList.remove("red");
+  const topCells = topCellse[colIndex];
+  topCells.classList.remove("yellow");
+  topCells.classList.remove("red");
 };
 
 const getColorOfCells = (cell) => {
@@ -370,7 +369,7 @@ const checkStatusOfGame = (cell) => {
   colToCheck = colIndex + 1;
   while (colToCheck <= 6 && rowToCheck <= 5) {
     const cellToCheck = rows[rowToCheck][colToCheck];
-    if (getColorOfCellss(cellToCheck) === color) {
+    if (getColorOfCells(cellToCheck) === color) {
       winningCells.push(cellToCheck);
       rowToCheck++;
       colToCheck++;
@@ -409,8 +408,8 @@ const handleCellMouseOver = (e) => {
   const [rowIndex, colIndex] = getCellLocation(cell);
   clearColorFromTop(colIndex);
 
-  const topCell = topCells[colIndex];
-  topCell.classList.add(yellowIsNext ? "yellow" : "red");
+  const topCells = topCellse[colIndex];
+  topCells.classList.add(yellowIsNext ? "yellow" : "red");
 };
 
 const handleCellMouseOut = (e) => {
@@ -433,8 +432,8 @@ const handleCellClick = (e) => {
   yellowIsNext = !yellowIsNext;
   clearColorFromTop(colIndex);
   if (gameIsLive) {
-    const topCell = topCells[colIndex];
-    topCell.classList.add(yellowIsNext ? "yellow" : "red");
+    const topCells = topCellse[colIndex];
+    topCells.classList.add(yellowIsNext ? "yellow" : "red");
   }
 };
 
@@ -448,10 +447,10 @@ for (const row of rows) {
 
 const reseting = () => {
   for (const row of rows) {
-    for (const cells of row) {
-      cells.classList.remove("red");
-      cells.classList.remove("yellow");
-      cells.classList.remove("win");
+    for (const cell of row) {
+      cell.classList.remove("red");
+      cell.classList.remove("yellow");
+      cell.classList.remove("win");
     }
   }
   resetButton.disabled = true;
@@ -459,3 +458,244 @@ const reseting = () => {
   yellowIsNext = true;
   statusSpan = "";
 };
+const letterContainer = document.getElementById("letter-container");
+const optionsContainer = document.getElementById("options-container");
+const userInputSection = document.getElementById("user-input-section");
+const newGameContainer = document.getElementById("new-game-container");
+const newGamebutton = document.getElementById("new-game-button");
+const canvas = document.getElementById("cans");
+const resultText = document.getElementById("result-text");
+
+let options = {
+  makkelijk: [
+    "boom",
+    "stoel",
+    "appel",
+    "vis",
+    "hond",
+    "kat",
+    "brood",
+    "lamp",
+    "trein",
+    "kaas",
+    "jas",
+    "maan",
+    "huis",
+    "fiets",
+    "boek",
+    "glas",
+    "melk",
+    "ster",
+    "deur",
+    "plant",
+  ],
+  gemiddeld: [
+    "bakker",
+    "klokken",
+    "tunnel",
+    "mieren",
+    "prullenbak",
+    "zwembad",
+    "horloge",
+    "kussen",
+    "kalender",
+    "winkel",
+    "trommel",
+    "schaduw",
+    "peper",
+    "regenboog",
+    "sleutel",
+    "olifant",
+    "ladder",
+    "spiegel",
+    "schaatsen",
+    "hamer",
+  ],
+  moeilijk: [
+    "dauwdruppel",
+    "muggenbult",
+    "vleermuis",
+    "regenwoud",
+    "paraplu",
+    "schoorsteen",
+    "toetsenbord",
+    "klavertje",
+    "zandloper",
+    "kangoeroe",
+    "schubdieren",
+    "brievenbus",
+    "dromedaris",
+    "bliksemstraal",
+    "krokodil",
+    "planetarium",
+    "vioolconcert",
+    "eskimo",
+    "waterlelie",
+    "kameleon",
+  ],
+};
+let goedgeradenaantal = 0;
+let aantalkeren = 0;
+
+let gekozenwoord = "";
+
+const displayOptions = () => {
+  optionsContainer.innerHTML += `<h3>Selecteer een optie</h3>`;
+  let buttonCon = document.createElement("article");
+  for (let value in options) {
+    buttonCon.innerHTML += `<button class="options" onclick="generateWord('${value}')">${value}</button>`;
+  }
+  optionsContainer.appendChild(buttonCon);
+};
+const blocker = () => {
+  let optionsButtons = document.querySelectorAll(".options");
+  let letterButtons = document.querySelectorAll(".letter");
+  optionsButtons.forEach((button) => {
+    button.disabled = true;
+  });
+  letterButtons.forEach((button) => {
+    button.disabled = true;
+  });
+  newGameContainer.classList.remove("hide");
+};
+const generateWord = (optionsValue) => {
+  let optionnsButtons = dovument.querySelectorAll(".options");
+  optionnsButtons.forEach((button) => {
+    if (button.innerText.toLowerCasw() === optionValue) {
+      button.classList.add("active");
+    }
+    button.disabled = true;
+  });
+  letterContainer.classList.remove("hide");
+  userInputSection.innerText = "";
+  let optionArray = options[optionsValue];
+  chosenWord = optionArray[Math.floor(Math.random() * optionArray.length)];
+  chosenWord = chosenWord.toUpperCase();
+  let displayItem = chosenWord.replace(/./g, '<span class="dashes">_</span>');
+
+  userInputSection.innerHTML = displayItem;
+};
+
+const intializer = () => {
+  goedgeradenaantal = 0;
+  aantalkeren = 0;
+
+  userInputSection.innerHTML = "";
+  optionsContainer.innerHTML = "";
+  letterContainer.classList.add("hide");
+  newGameContainer.classList.add("hide");
+  letterContainer.innerHTML = "";
+
+  for (let i = 65; i < 65; i++) {
+    let button = document.createElement("button");
+    button.classList.add("letters");
+
+    button.innerText = String.fromCharCode(i);
+
+    button.addEventListener("click", () => {
+      let charArray = chosenWord.split("");
+      let dashes = document.getElementsByClassName("dashes");
+      if (charArray.includes(button.innerText)) {
+        charArray.forEach((charArray, index) => {
+          if (char === button.innerText) {
+            dashes[index].innerText = char;
+
+            goedgeradenaantal += 1;
+
+            if (goedgeradenaantal == charArray.length) {
+              resultText.innerHTML = `<h2 class='win-msg'>Je Hebt GeWonnen!!</h2><p>Het woord was <span>${chosenWord}</span></p>`;
+              blocker();
+            }
+          }
+        });
+      } else {
+        aantalkeren += 1;
+        drawMan(aantalkeren);
+
+        if (aantalkeren == 6) {
+          resultText.innerHTML = `<h2 class='losw-msg'>Je Hebt VerLoren!!</h2><p>Het woord was <span>${chosenWord}</span></p>`;
+          blocker();
+        }
+      }
+
+      button.disabled = true;
+    });
+
+    letterContainer.appendChild(button);
+  }
+  displayOptions();
+  let { initialDrawing } = canvasCreator();
+  initialDrawing();
+};
+
+const canvasCreator = () => {
+  let context = canvas.getContext("2d");
+  context.beginPath();
+  context.strokeStyle = "#000";
+  context.lineWidth = 2;
+
+  const drawLine = (fromX, fromY, toX, toY) => {
+    context.moveTo(fromX, fromY);
+    context.lineTo(toX, toY);
+    context.stroke();
+  };
+  const head = () => {
+    context.beginPath();
+    context.arc(70, 30, 10, 0, Math.PI * 2, true);
+    context.stroke();
+  };
+
+  const body = () => {
+    drawLine(70, 40, 70, 80);
+  };
+  const leftArm = () => {
+    drawLine(70, 50, 50, 70);
+  };
+  const rightArm = () => {
+    drawLine(70, 50, 90, 70);
+  };
+  const leftLeg = () => {
+    drawLine(70, 80, 50, 110);
+  };
+  const rightLeg = () => {
+    drawLine(70, 80, 90, 110);
+  };
+  const initalDrawing = () => {
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+
+    drawLine(10, 130, 130, 130);
+
+    drawLine(10, 10, 10, 131);
+    drawLine(10, 10, 70, 10);
+
+    drawLine(70, 10, 70, 20);
+  };
+  return { initalDrawing, head, body, leftArm, rightArm, leftLeg, rightLeg };
+};
+const drawMan = (aantalkeren) => {
+  let { head, body, leftArm, rightArm, leftLeg, rightLeg } = canvasCreator();
+  switch (aantalkeren) {
+    case 1:
+      head();
+      break;
+    case 2:
+      body();
+      break;
+    case 3:
+      leftArm();
+      break;
+    case 4:
+      rightArm();
+      break;
+    case 5:
+      leftLeg();
+      break;
+    case 6:
+      rightLeg();
+      break;
+    default:
+      break;
+  }
+};
+newGamebutton.addEventListener("click", initializer);
+window.onload = initializer;
